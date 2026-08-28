@@ -2,17 +2,24 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
+use App\Models\Kompetensi;
 use App\Models\Siswa;
+use Illuminate\Database\Seeder;
+
 class SiswaSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function run(): void
     {
-        Siswa::factory(10)->create();
+        Siswa::factory()
+            ->count(30)
+            ->create()
+            ->each(function ($siswa) {
+
+                $kompetensi = Kompetensi::inRandomOrder()
+                    ->limit(rand(2, 5))
+                    ->pluck('id');
+
+                $siswa->kompetensi()->attach($kompetensi);
+            });
     }
 }

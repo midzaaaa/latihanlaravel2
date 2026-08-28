@@ -17,17 +17,19 @@
                 <th>Nama</th>
                 <th>Perusahaan</th>
                 <th>Aksi</th>
+                <th>Kompetensi</th>
             </tr>
         </thead>
         <tbody>
-            @forelse ($siswas as $siswa)
+            @forelse ($siswa as $s)
                 <tr>
-                    <td>{{ $siswa->nis }}</td>
-                    <td>{{ $siswa->nama }}</td>
-                    <td>{{ $siswa->perusahaan->nama_perusahaan ?? '-' }}</td>
+                    <td>{{ $s->nis }}</td>
+                    <td>{{ $s->nama }}</td>
+                    <td>{{ $s->perusahaan->nama_perusahaan ?? '-' }}</td>
                     <td>
-                        <a href="{{ route('siswa.edit', $siswa->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('siswa.destroy', $siswa->id) }}" method="POST" style="display:inline">
+                        <a href="{{ route('siswa.edit', $s->id) }}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{{ route('siswa.show', $s->id) }}" class="btn btn-sm btn-info">Detail</a>
+                        <form action="{{ route('siswa.destroy', $s->id) }}" method="POST" style="display:inline">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Yakin hapus?')">Hapus</button>
@@ -41,7 +43,5 @@
             @endforelse
         </tbody>
     </table>
-
-    {{ $siswas->links() }}
 </div>
 @endsection

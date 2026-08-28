@@ -23,7 +23,6 @@ class PerusahaanController extends Controller
     {
         $validated = $request->validate([
             'nama_perusahaan' => 'required|max:100',
-            'bidang_usaha' => 'required|max:100',
             'alamat' => 'required',
             'nama_pembimbing_industri' => 'nullable|max:100',
             'telepon' => 'nullable|max:20',
@@ -55,7 +54,6 @@ class PerusahaanController extends Controller
 
         $validated = $request->validate([
             'nama_perusahaan' => 'required|max:100',
-            'bidang_usaha' => 'required|max:100',
             'alamat' => 'required',
             'nama_pembimbing_industri' => 'nullable|max:100',
             'telepon' => 'nullable|max:20',
