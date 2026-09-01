@@ -37,7 +37,7 @@ class SiswaController extends Controller
             'tanggal_mulai' => 'nullable|date',
             'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
             'kompetensi' => 'required|array',
-            'kompetensi.*' => 'exists:kompetensis,id',
+            'kompetensi.*' => 'exists:kompetensi,id',
         ]);
 
         $siswa = Siswa::create([
@@ -46,8 +46,8 @@ class SiswaController extends Controller
             'kelas' => $validated['kelas'],
             'jurusan' => $validated['jurusan'],
             'perusahaan_id' => $validated['perusahaan_id'],
-            'tanggal_mulai' => $validated['tanggal_mulai'] ?? null,
-            'tanggal_selesai' => $validated['tanggal_selesai'] ?? null,
+            'tanggal_mulai_pkl' => $validated['tanggal_mulai'] ?? null,
+            'tanggal_selesai_pkl' => $validated['tanggal_selesai'] ?? null,
         ]);
 
         $siswa->kompetensi()->attach($validated['kompetensi']);
@@ -86,7 +86,7 @@ class SiswaController extends Controller
             'tanggal_mulai' => 'nullable|date',
             'tanggal_selesai' => 'nullable|date|after_or_equal:tanggal_mulai',
             'kompetensi' => 'required|array',
-            'kompetensi.*' => 'exists:kompetensis,id',
+            'kompetensi.*' => 'exists:kompetensi,id',
         ]);
 
         $siswa->update([

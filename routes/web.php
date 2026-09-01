@@ -78,6 +78,11 @@ Route::prefix('siswa')->name('siswa.')->group(function () {
 |--------------------------------------------------------------------------
 */
 
+/*
+|--------------------------------------------------------------------------
+| Kompetensi
+|--------------------------------------------------------------------------
+*/
 Route::prefix('kompetensi')->name('kompetensi.')->group(function () {
 
     Route::get('/', [KompetensiController::class, 'index'])
@@ -100,4 +105,5 @@ Route::prefix('kompetensi')->name('kompetensi.')->group(function () {
 
     Route::delete('/{kompetensi}', [KompetensiController::class, 'destroy'])
         ->name('destroy');
+
 });

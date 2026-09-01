@@ -16,8 +16,8 @@
                 <th>NIS</th>
                 <th>Nama</th>
                 <th>Perusahaan</th>
-                <th>Aksi</th>
                 <th>Kompetensi</th>
+                <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -26,6 +26,13 @@
                     <td>{{ $s->nis }}</td>
                     <td>{{ $s->nama }}</td>
                     <td>{{ $s->perusahaan->nama_perusahaan ?? '-' }}</td>
+                    <td>
+                        @forelse ($s->kompetensi as $k)
+                            <span class="badge bg-secondary">{{ $k->nama_kompetensi }}</span>
+                        @empty
+                            -
+                        @endforelse
+                    </td>
                     <td>
                         <a href="{{ route('siswa.edit', $s->id) }}" class="btn btn-sm btn-warning">Edit</a>
                         <a href="{{ route('siswa.show', $s->id) }}" class="btn btn-sm btn-info">Detail</a>
@@ -38,7 +45,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="4">Belum ada data siswa.</td>
+                    <td colspan="5">Belum ada data siswa.</td>
                 </tr>
             @endforelse
         </tbody>

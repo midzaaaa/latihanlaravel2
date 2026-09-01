@@ -11,7 +11,6 @@ class Kompetensi extends Model
     use HasFactory;
 
     protected $table = 'kompetensi';
-
     protected $fillable = [
         'nama_kompetensi',
         'deskripsi',

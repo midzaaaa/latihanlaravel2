@@ -34,25 +34,51 @@
         </div>
 
         <div class="mb-3">
-            <label for="tanggal_mulai_pkl" class="form-label">Tanggal Mulai PKL</label>
-            <input type="date" name="tanggal_mulai_pkl" id="tanggal_mulai_pkl" class="form-control" value="{{ old('tanggal_mulai_pkl', $siswa->tanggal_mulai_pkl) }}">
+            <label for="jurusan" class="form-label">Jurusan</label>
+            <input type="text" name="jurusan" id="jurusan" class="form-control" value="{{ old('jurusan', $siswa->jurusan) }}">
         </div>
 
         <div class="mb-3">
-            <label for="tanggal_selesai_pkl" class="form-label">Tanggal Selesai PKL</label>
-            <input type="date" name="tanggal_selesai_pkl" id="tanggal_selesai_pkl" class="form-control" value="{{ old('tanggal_selesai_pkl', $siswa->tanggal_selesai_pkl) }}">
+            <label for="tanggal_mulai" class="form-label">Tanggal Mulai PKL</label>
+            <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="form-control" value="{{ old('tanggal_mulai', $siswa->tanggal_mulai) }}">
+        </div>
+
+        <div class="mb-3">
+            <label for="tanggal_selesai" class="form-label">Tanggal Selesai PKL</label>
+            <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="form-control" value="{{ old('tanggal_selesai', $siswa->tanggal_selesai) }}">
         </div>
 
         <div class="mb-3">
             <label for="perusahaan_id" class="form-label">Perusahaan</label>
             <select name="perusahaan_id" id="perusahaan_id" class="form-control">
                 <option value="">-- Pilih Perusahaan --</option>
-                @foreach ($perusahaans as $perusahaan)
-                    <option value="{{ $perusahaan->id }}" {{ old('perusahaan_id', $siswa->perusahaan_id) == $perusahaan->id ? 'selected' : '' }}>
-                        {{ $perusahaan->nama_perusahaan }}
+                @foreach ($perusahaan as $p)
+                    <option value="{{ $p->id }}" {{ old('perusahaan_id', $siswa->perusahaan_id) == $p->id ? 'selected' : '' }}>
+                        {{ $p->nama_perusahaan }}
                     </option>
                 @endforeach
             </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Kompetensi</label>
+            @php
+                $selectedKompetensi = old('kompetensi', $siswa->kompetensi->pluck('id')->toArray());
+            @endphp
+            @foreach ($kompetensi as $k)
+                <div class="form-check">
+                    <input
+                        type="checkbox"
+                        name="kompetensi[]"
+                        value="{{ $k->id }}"
+                        id="kompetensi_{{ $k->id }}"
+                        class="form-check-input"
+                        {{ in_array($k->id, $selectedKompetensi) ? 'checked' : '' }}>
+                    <label for="kompetensi_{{ $k->id }}" class="form-check-label">
+                        {{ $k->nama_kompetensi }}
+                    </label>
+                </div>
+            @endforeach
         </div>
 
         <button type="submit" class="btn btn-primary">Update</button>
