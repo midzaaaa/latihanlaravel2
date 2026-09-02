@@ -3,19 +3,29 @@
 use App\Http\Controllers\KompetensiController;
 use App\Http\Controllers\PerusahaanController;
 use App\Http\Controllers\SiswaController;
+use App\Models\Siswa;
+use App\Models\Perusahaan;
+use App\Models\Kompetensi;
 use Illuminate\Support\Facades\Route;
 
+/*
+|--------------------------------------------------------------------------
+| Beranda / Dashboard
+|--------------------------------------------------------------------------
+*/
 Route::get('/', function () {
-    return redirect()->route('siswa.index');
-});
+    $totalSiswa = Siswa::count();
+    $totalPerusahaan = Perusahaan::count();
+    $totalKompetensi = Kompetensi::count();
 
+    return view('dashboard', compact('totalSiswa', 'totalPerusahaan', 'totalKompetensi'));
+})->name('home');
 
 /*
 |--------------------------------------------------------------------------
 | Perusahaan
 |--------------------------------------------------------------------------
 */
-
 Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
 
     Route::get('/', [PerusahaanController::class, 'index'])
@@ -38,15 +48,14 @@ Route::prefix('perusahaan')->name('perusahaan.')->group(function () {
 
     Route::delete('/{perusahaan}', [PerusahaanController::class, 'destroy'])
         ->name('destroy');
-});
 
+});
 
 /*
 |--------------------------------------------------------------------------
 | Siswa
 |--------------------------------------------------------------------------
 */
-
 Route::prefix('siswa')->name('siswa.')->group(function () {
 
     Route::get('/', [SiswaController::class, 'index'])
@@ -69,14 +78,8 @@ Route::prefix('siswa')->name('siswa.')->group(function () {
 
     Route::delete('/{siswa}', [SiswaController::class, 'destroy'])
         ->name('destroy');
+
 });
-
-
-/*
-|--------------------------------------------------------------------------
-| Kompetensi
-|--------------------------------------------------------------------------
-*/
 
 /*
 |--------------------------------------------------------------------------

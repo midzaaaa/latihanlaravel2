@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Data Perusahaan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <a href="{{ route('home') }}" class="btn-beranda-float" title="Kembali ke Beranda">
+    🏠 Beranda
+</a>
     <style>
         body{
             background:#f4f6f9;
@@ -27,14 +30,39 @@
         .table-wrapper table{
             margin-bottom:0;
         }
+        .btn-beranda-float {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background-color: #0d6efd;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.btn-beranda-float:hover {
+    background-color: #0b5ed7;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
     </style>
 </head>
 <body>
 <div class="container">
     <div class="card">
-        <div class="card-header bg-primary text-white d-flex justify-content-between">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
             <h3>🎓 Data Perusahaan Mitra PKL</h3>
-           <a href="{{ route('perusahaan.create') }}" class="btn btn-primary">+ Tambah Perusahaan</a>
+            <a href="{{ route('perusahaan.create') }}" class="btn btn-primary">+ Tambah Perusahaan</a>
         </div>
         <div class="card-body">
 

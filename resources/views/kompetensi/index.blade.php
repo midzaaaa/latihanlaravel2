@@ -1,14 +1,12 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
-    <h1>Data Kompetensi</h1>
+    <h1>Data Kompetensi 🧾</h1>
 
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
-
     <a href="{{ route('kompetensi.create') }}" class="btn btn-primary mb-3">Tambah Kompetensi</a>
-
     <table class="table table-bordered">
         <thead>
             <tr>
