@@ -9,14 +9,18 @@ use Illuminate\Http\Request;
 
 class SiswaController extends Controller
 {
-    public function index()
-    {
-        $siswa = Siswa::with(['perusahaan', 'kompetensi'])
-            ->latest()
-            ->get();
+   public function index(Request $request)
+{
+    $siswa = Siswa::with(['perusahaan', 'kompetensi'])
+        ->when($request->search, function ($query) use ($request) {
+            $query->where('nis', 'like', '%' . $request->search . '%')
+                  ->orWhere('nama', 'like', '%' . $request->search . '%');
+        })
+        ->latest()
+        ->get();
 
-        return view('siswa.index', compact('siswa'));
-    }
+    return view('siswa.index', compact('siswa'));
+}
 
     public function create()
     {

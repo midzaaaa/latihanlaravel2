@@ -15,7 +15,7 @@
         .card{
             margin-top:40px;
             border:none;
-            box-shadow:0 0 15px rgba(7, 113, 252, 0.1);
+            box-shadow:0 0 15px rgba(0, 110, 255, 0.1);
         }
         .a{
             text-decoration:none;
@@ -95,9 +95,6 @@
             <td class="text-center">
                 <a href="{{ route('perusahaan.show', $p->id) }}" class="btn btn-sm btn-info text-white mb-1">
                     Detail
-                </a>
-                <a href="{{ route('perusahaan.show', $p->id) }}" class="btn btn-sm btn-success text-white mb-1">
-                    Lihat Daftar Siswa
                 </a>
                 <a href="{{ route('perusahaan.edit', $p->id) }}" class="btn btn-sm btn-warning text-white mb-1">
                     Edit

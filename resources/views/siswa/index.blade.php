@@ -7,7 +7,23 @@
     @if (session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
     @endif
+
     <a href="{{ route('siswa.create') }}" class="btn btn-primary mb-3">Tambah Siswa</a>
+
+    <form action="{{ route('siswa.index') }}" method="GET" class="mb-3">
+        <div class="input-group" style="max-width: 400px;">
+            <input
+                type="text"
+                name="search"
+                class="form-control"
+                placeholder="Cari Berdasarkan NIS/Nama..."
+                value="{{ request('search') }}">
+            <button type="submit" class="btn btn-primary">Cari</button>
+            @if (request('search'))
+                <a href="{{ route('siswa.index') }}" class="btn btn-secondary">Kembali</a>
+            @endif
+        </div>
+    </form>
 
     <table class="table table-bordered">
         <thead>
@@ -44,7 +60,13 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="5">Belum ada data siswa.</td>
+                    <td colspan="5">
+                        @if (request('search'))
+                            Tidak ada siswa dengan NIS "{{ request('search') }}".
+                        @else
+                            Belum ada data siswa.
+                        @endif
+                    </td>
                 </tr>
             @endforelse
         </tbody>
