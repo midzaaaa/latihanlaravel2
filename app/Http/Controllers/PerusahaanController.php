@@ -9,7 +9,7 @@ class PerusahaanController extends Controller
 {
     public function index()
     {
-        $perusahaans = Perusahaan::paginate(10);
+        $perusahaans = Perusahaan::withCount('siswas')->paginate(10);
 
         return view('perusahaan.index', compact('perusahaans'));
     }
@@ -36,7 +36,7 @@ class PerusahaanController extends Controller
 
     public function show($id)
     {
-        $perusahaan = Perusahaan::findOrFail($id);
+        $perusahaan = Perusahaan::with('siswas')->findOrFail($id);
 
         return view('perusahaan.show', compact('perusahaan'));
     }
